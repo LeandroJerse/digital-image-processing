@@ -14,6 +14,11 @@ digital-image-processing/
 │   ├── foz.jpg               # Imagem de exemplo para testes
 │   └── grafico.png           # Exemplo de gráfico salvo
 │
+├── lab01/                    # Laboratório 01: Redimensionamento e DPI
+│   ├── lab01.ipynb           # Notebook sobre redimensionamento de imagens por DPI
+│   ├── relogio.tif           # Imagem original de alta resolução (1250 dpi)
+│   └── relogio_300dpi.png    # Imagem redimensionada para 300 dpi
+│
 ├── .gitignore                # Regras de arquivos ignorados pelo Git
 └── README.md                 # Este arquivo
 ```
@@ -158,10 +163,56 @@ jupyter notebook
 - **Importante:** OpenCV lê imagens no formato BGR, não RGB. Sempre converta com `cv2.cvtColor(img, cv2.COLOR_BGR2RGB)` antes de visualizar com matplotlib
 - O notebook `basics_opencv.ipynb` requer uma imagem de exemplo (como `foz.jpg`) para funcionar corretamente
 
+### Lab 01: Redimensionamento de Imagens por DPI
+
+**Arquivo:** `lab01/lab01.ipynb`
+
+Este laboratório aborda o redimensionamento de imagens com base em diferentes valores de DPI (dots per inch), uma operação fundamental em processamento digital de imagens.
+
+#### Conteúdo abordado:
+
+1. **Leitura e Análise de Imagem**
+   - Leitura de imagens em escala de cinza com `cv2.imread()`
+   - Análise das dimensões da imagem original
+   - Visualização com `matplotlib` usando colormap em escala de cinza
+
+2. **Redimensionamento para 300 DPI**
+   - Algoritmo de redimensionamento manual usando fator de escala (4.16x)
+   - Amostragem de pixels com controle de frações decimais
+   - Criação de nova imagem redimensionada mantendo qualidade
+
+3. **Redimensionamento para 150 DPI**
+   - Cálculo do fator de escala baseado na razão de DPI (1250/150)
+   - Implementação de algoritmo de amostragem sistemática
+   - Redução proporcional da resolução
+
+4. **Redimensionamento para 72 DPI**
+   - Redimensionamento para resolução web (72 dpi)
+   - Aplicação do mesmo algoritmo adaptado para novo fator de escala
+   - Comparação visual das diferentes resoluções
+
+5. **Visualização Comparativa**
+   - Exibição lado a lado das três versões redimensionadas
+   - Uso de subplots para comparação visual
+   - Análise do impacto visual da resolução
+
+6. **Função Generalizada**
+   - Implementação de função `recalcular_imagem()` para redimensionamento genérico
+   - Parâmetros: imagem, DPI atual, DPI desejado
+   - Reutilização do algoritmo para diferentes conversões de DPI
+
+**Arquivos necessários:**
+- `relogio.tif`: Imagem original de alta resolução (3692x2812 pixels, 1250 dpi)
+
+**Resultados:**
+- 300 dpi: 887x675 pixels
+- 150 dpi: 443x337 pixels
+- 72 dpi: 212x161 pixels
+
 ## 📚 Próximas Atualizações
 
-- Lab 01: [A ser adicionado]
 - Lab 02: [A ser adicionado]
+- Lab 03: [A ser adicionado]
 - ...
 
 ---
