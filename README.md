@@ -14,10 +14,10 @@ digital-image-processing/
 │   ├── foz.jpg               # Imagem de exemplo para testes
 │   └── grafico.png           # Exemplo de gráfico salvo
 │
-├── lab01/                    # Laboratório 01: Redimensionamento e DPI
-│   ├── lab01.ipynb           # Notebook sobre redimensionamento de imagens por DPI
+├── lab01/                    # Laboratório 01: Redimensionamento e Quantização
+│   ├── lab01.ipynb           # Notebook sobre redimensionamento por DPI e quantização
 │   ├── relogio.tif           # Imagem original de alta resolução (1250 dpi)
-│   └── relogio_300dpi.png    # Imagem redimensionada para 300 dpi
+│   └── ctskull-256.tif       # Imagem de tomografia para quantização (452x374 pixels)
 │
 ├── .gitignore                # Regras de arquivos ignorados pelo Git
 └── README.md                 # Este arquivo
@@ -163,11 +163,11 @@ jupyter notebook
 - **Importante:** OpenCV lê imagens no formato BGR, não RGB. Sempre converta com `cv2.cvtColor(img, cv2.COLOR_BGR2RGB)` antes de visualizar com matplotlib
 - O notebook `basics_opencv.ipynb` requer uma imagem de exemplo (como `foz.jpg`) para funcionar corretamente
 
-### Lab 01: Redimensionamento de Imagens por DPI
+### Lab 01: Redimensionamento e Quantização de Imagens
 
 **Arquivo:** `lab01/lab01.ipynb`
 
-Este laboratório aborda o redimensionamento de imagens com base em diferentes valores de DPI (dots per inch), uma operação fundamental em processamento digital de imagens.
+Este laboratório aborda duas operações fundamentais em processamento digital de imagens: redimensionamento baseado em DPI (dots per inch) e quantização de níveis de cinza.
 
 #### Conteúdo abordado:
 
@@ -201,13 +201,30 @@ Este laboratório aborda o redimensionamento de imagens com base em diferentes v
    - Parâmetros: imagem, DPI atual, DPI desejado
    - Reutilização do algoritmo para diferentes conversões de DPI
 
+7. **Quantização de Níveis de Cinza**
+   - Implementação da função `quantizacao()` para reduzir níveis de cinza
+   - Redução progressiva de 7 bits até 1 bit por pixel
+   - Cálculo do fator de quantização: `256 / 2^bits`
+   - Visualização do efeito da quantização em diferentes níveis
+   - Análise da perda de qualidade visual conforme redução de bits
+
 **Arquivos necessários:**
 - `relogio.tif`: Imagem original de alta resolução (3692x2812 pixels, 1250 dpi)
+- `ctskull-256.tif`: Imagem de tomografia computadorizada (452x374 pixels) para quantização
 
-**Resultados:**
+**Resultados - Redimensionamento:**
 - 300 dpi: 887x675 pixels
 - 150 dpi: 443x337 pixels
 - 72 dpi: 212x161 pixels
+
+**Resultados - Quantização:**
+- 7 bits: 128 níveis de cinza
+- 6 bits: 64 níveis de cinza
+- 5 bits: 32 níveis de cinza
+- 4 bits: 16 níveis de cinza
+- 3 bits: 8 níveis de cinza
+- 2 bits: 4 níveis de cinza
+- 1 bit: 2 níveis de cinza (binarização)
 
 ## 📚 Próximas Atualizações
 
